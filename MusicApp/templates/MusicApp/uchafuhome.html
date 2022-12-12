@@ -1,0 +1,152 @@
+
+{% extends 'MusicApp/base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>MUST ARTISTS MUSICS</title>
+   <style type="text/css">
+    
+  
+    html{
+      overflow-x: hidden;
+    }
+   </style>
+  
+</head>
+<body style="">
+
+
+
+
+
+
+
+
+    <div class="container-fluid" style="margin-bottom: 2cm;">
+
+
+
+    
+<h5 class="song-category-title mx-5 pt-4">MUST Music Gallery<small class="float-end"><a href="">All Songs <i class="bi bi-soundwave"></i></a></small></h5>
+
+{% if messages %}
+{% for message in messages %}
+     
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong style="color: red;font-size: 18px;font-weight: bold;">{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+  {% endif %}
+
+    <!-- start category area-->
+    <section class=" d-flex justify-content-center" style="flex-wrap: wrap;">
+
+
+
+{% if music %}
+{% for x in music %}
+      <!--song card start-->
+      <div class="col-md-3 m-3" style="">
+        <div style="position: relative;">
+          
+           {% video x.video '100% x 170' %}
+          </div>
+        <div>
+          <div class="lead text-white" style="margin-top: 14px;">
+              {{x.SongName}}
+        </div>
+          <small class="" style="color: red;font-weight: bold;">{{x.ArtistName}} - 
+           <span style="color: white;font-weight: bold;">{{x.Created}}</span>
+           </small><br>
+
+           <p style="color: white"><img src="{%static 'MusicApp/assets/img/me.jpg' %}" class="rounded-circle" style="width: 30px;height: 30px;">  &nbsp; Must Artists Television</p>
+
+          <!--  <button class="btn-primary" style="color: white;border-radius: 5px;padding: 6px;margin-top: 20px;">Download</button> -->
+        </div>
+      </div>
+      <!--song card end-->
+{% endfor %}
+{% else %}
+<h5 class="song-category-title mx-5 pt-4">No Uploaded Music </h5>
+{% endif %}
+
+</section>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'MusicApp/assets/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'MusicApp/assets/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+
+
+   
+
+    <!-- ------------ AOS js Library  ------------------------- -->
+    <script src="{% static 'MusicApp/assets/js/aos.js' %}"></script>
+
+    
+
+
+   <script >
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskel",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+      
+
+    ];
+
+   $( "#search" ). autocomplete({
+    source: "{% url 'search_music_autocomplete' %}",
+  });
+
+
+  } );
+  
+  
+
+</script>
+</body>
+</html>
+
+{% endblock %}

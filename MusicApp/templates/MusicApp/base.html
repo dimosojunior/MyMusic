@@ -1,0 +1,606 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>MUST ARTUSTS MUSICS</title>
+
+
+ <!--HII NI KWA AJILI YA ICONS ZOTE--->
+ <link href="{% static 'MusicApp/assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+    
+
+         <!---jqeury css link---->
+     <link rel="stylesheet" href="{% static 'MusicApp/assets/jqueryui/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'MusicApp/assets/jqueryui/jquery-ui.structure.min.css' %}">
+    <link rel="stylesheet" href="{% static 'MusicApp/assets/jqueryui/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static 'MusicApp/assets/jqueryui/jquery-ui.theme.min.css' %}">
+     <link rel="stylesheet" href="{% static 'MusicApp/assets/jqueryui/jquery-ui.theme.css' %}">
+
+ <!-- Vendor CSS Files ----->
+    <link href="{% static 'MusicApp/assets/css/animate.min.css' %}" rel="stylesheet">
+    
+    <link href="{% static 'MusicApp/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'MusicApp/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  
+    <link href="{% static 'MusicApp/assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+
+
+
+
+<style type="text/css">
+	body{
+	background-color: #0b1828;
+	
+}
+
+body a{
+	text-decoration: none;
+}
+
+.mainnav .active{
+
+	color: red!important;
+}
+
+.mainnav .active::after{
+
+	content: '';
+	background-color: red;
+	height:2px;
+	display: block;
+	margin-top: 5px;
+}
+
+.hero-nav .active{
+
+	color: red!important;
+	background-color: transparent!important;
+}
+
+.hero-nav .active::after{
+
+	content: '';
+	background-color: red;
+	height:2px;
+	display: block;
+	margin-top: 5px;
+}
+
+.hero-area{
+
+	background-image: url("{% static 'MusicApp/assets/img/bg1.jpg' %}");
+	min-height: 400px;
+	background-position: 20% 30%;
+	background-size: 100%;
+}
+
+.song-small:hover{
+
+	border: solid thin grey;
+	cursor: pointer;
+	transform: translateY(-10px);
+}
+
+.song-small{
+	background-color: #193353;
+	background: linear-gradient(90deg, rgba(0,0,4,1) 0%, rgba(24,49,82,1) 15%, rgba(25,51,83,1) 67%, rgba(0,212,255,0) 100%);
+	transition: all 0.3s ease;
+}
+
+.song-small-img{
+	width:50px;height:50px;object-fit: cover;
+}
+
+.song-category-title::after{
+	content: '';
+	background-color: #2cc8e5;
+	background: linear-gradient(90deg, rgba(24,49,82,0) 0%, rgba(44,200,229,1) 44%, rgba(0,212,255,0) 100%);
+	height:1px;
+	display: block;
+	margin-top: 15px;
+	width: 50%;
+}
+
+.song-category-title{
+	color: #2cc8e5;
+
+}
+
+.big-song-hover i{
+
+	left:50%;
+	top:50%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+}
+
+.big-song-hover:hover{
+	opacity: 1;
+}
+
+.big-song-hover{
+
+	position: absolute;
+	background-color: #000000bb;
+	left: 0px;
+	top:0px;
+	width:200px;
+	height: 200px;
+	opacity: 0;
+	transition: all .8s ease;
+}
+
+.big-song-img{
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+}
+
+@media (max-width: 602px)
+{
+	.nav-spacer{
+		height: 50px;
+	}
+
+}
+
+
+@media (max-width: 435px)
+{
+	.nav-spacer{
+		height: 80px;
+	}
+}
+.nav-link:hover{
+	color: red;
+
+}
+
+
+</style>
+
+
+
+
+</head>
+<body style="">
+
+
+
+
+<!--start main area-->
+	<main>
+		<!--start navigation-->
+		<nav class="mainnav shadow navbar-expand-lg navbar navbar-dark bg-dark fixed-top" style="">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="#">
+		    	<i class="bi bi-soundwave"></i> Music
+		    	<div style="font-size: 13px">MUST-Artists Musics</div>
+		    </a>
+
+		    <form method="get" action="{% url 'search_music' %}">
+                {% csrf_token %}
+
+		    <div>
+			    <div class="input-group ">
+				  <input type="text" name="search" id="search" class="form-control" placeholder="Search Music" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+				  <button type="submit" class="border-0 input-group-text" id="basic-addon2" style="color: white;font-weight: bold;background-color: blue;"><i class="bi bi-search"></i></button>
+				</div>
+			</div>
+
+		</form>
+
+			<div class="text-white h4 mx-3">
+				<a href="">
+					<i class="bi bi-facebook"></i>
+				</a>
+				<a href="">
+					<i class="bi bi-twitter"></i>
+				</a>
+				<a href="">
+					<i class="bi bi-instagram"></i>
+				</a>
+			</div>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+		        <li class="nav-item"> 
+		          <a class="nav-link active" aria-current="page" href="{% url 'home' %}" style="color: white;font-weight: bold;">Home</a>
+		        </li>
+		        
+		        <li class="nav-item">
+		          <a class="nav-link" href="{% url 'trending' %}" style="color: white;font-weight: bold;">Trending</a>
+		        </li>
+
+		         <li class="nav-item">
+		          <a class="nav-link" href="{% url 'featured' %}" style="color: white;font-weight: bold;">Featured</a>
+		        </li>
+
+		        <li class="nav-item">
+		          <a class="nav-link" href="{% url 'new_release' %}" style="color: white;font-weight: bold;">New</a>
+		        </li>
+		        
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;font-weight: bold;">
+		            Category
+		          </a>
+		          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item text-white" href="{% url 'bongo_flavor' %}" style="color: white;font-weight: bold;">Bongo Flavor</a></li>
+		            <li><a class="dropdown-item text-white" href="{% url 'hiphop' %}" style="color: white;font-weight: bold;">Hip-Hop</a></li>
+		           
+		            <li><a class="dropdown-item text-white" href="{% url 'rnb' %}" style="color: white;font-weight: bold;">RNB</a></li>
+		          </ul>
+		        </li>
+
+
+		          <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;font-weight: bold;">
+		            Tutorials
+		          </a>
+		          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item text-white" href="{% url 'tutorials_home' %}" style="color: white;font-weight: bold;">All Tutorials</a></li>
+		           <li><a class="dropdown-item text-white" href="{% url 'python' %}" style="color: white;font-weight: bold;">Python Tutorials</a></li>
+		            <li><a class="dropdown-item text-white" href="{% url 'django' %}" style="color: white;font-weight: bold;">Django Tutorials</a></li>
+
+		            <li><a class="dropdown-item text-white" href="{% url 'html_css' %}" style="color: white;font-weight: bold;">Html & Css Tutorials</a></li>
+
+		            <li><a class="dropdown-item text-white" href="{% url 'javascript' %}" style="color: white;font-weight: bold;">Javascript Tutorials</a></li>
+
+		            <li><a class="dropdown-item text-white" href="{% url 'bootstrap' %}" style="color: white;font-weight: bold;">Bootstrap Tutorials</a></li>
+		          </ul>
+		        </li>
+
+		        <img class="rounded-circle" src="{% static 'MusicApp/assets/img/me.jpg' %}" style="width:40px;height:40px">
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;font-weight: bold;">
+		            Hi, {{user.username}}
+		          </a>
+		          <ul class="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
+		          	<li><a class="dropdown-item text-white" href="{% url 'upload_music' %}"><i class="bi bi-person"></i> Upload Music</a></li>
+		            <li><a class="dropdown-item text-white" href="{% url 'signin' %}"><i class="bi bi-person"></i> Signin</a></li>
+		            <li><a class="dropdown-item text-white" href="{% url 'signup' %}"><i class="bi bi-gear"></i> Signup</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item text-white" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav><!--end navigation-->
+
+
+		<!--start hero area-->
+		<div class="hero-area text-white pt-5 mt-2">
+			
+			<div class="nav-spacer"></div>
+
+			<ul class="hero-nav nav m-4 nav-pills mb-3" id="pills-tab" role="tablist">
+			  <li class="nav-item" role="presentation">
+			    <button class="text-white nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Featured</button>
+			  </li>
+			  <li class="nav-item" role="presentation">
+			    <button class="text-white nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Trending</button>
+			  </li>
+			  <li class="nav-item" role="presentation">
+			    <button class="text-white nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">New Release</button>
+			  </li>
+			</ul>
+
+
+
+
+
+<!----------Featured--------------------------->
+
+ <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                  {% if isfeatured %}
+                  {% for x in isfeatured %}
+                  <a href="{% url 'view_music' x.id %}" style="color: white;text-decoration: none;">
+
+                    <!--small song item-->
+                    <div class="song-small m-1 ms-4 col-md-6 row align-items-center" >
+                        <div class="col-1 h3">{{forloop.counter}}</div>
+                        <div class="col d-flex">
+
+                        	{% if x.ArtistImage %}
+
+                            <img class="song-small-img rounded m-1" src="{{x.ArtistImage.url}}" >
+
+                            {% endif %}
+
+                            <div class="ms-1">
+                                <div>{{x.SongName}}</div>
+                                <small>{{x.ArtistName}}</small>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--end small song item-->
+                    </a>
+
+                    {% endfor %}
+                    {% else %}
+<h5 class="song-category-title mx-5 pt-4">No Featured Musics </h5>
+{% endif %}
+
+
+
+
+     </div>
+
+
+
+
+
+
+
+<!---------------------Trending------------------------------>
+
+
+
+              <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                   {% if trending %}
+                  {% for x in trending %}
+
+                  <a href="{% url 'view_music' x.id %}" style="color: white;text-decoration: none;">
+
+                    <!--small song item-->
+                    <div class="song-small m-1 ms-4 col-md-6 row align-items-center" >
+                        <div class="col-1 h3">{{forloop.counter}}</div>
+                        <div class="col d-flex">
+
+                        	{% if x.ArtistImage %}
+                            <img class="song-small-img rounded m-1" src="{{x.ArtistImage.url}}" >
+                            {% endif %}
+                            <div class="ms-1">
+                                <div>{{x.SongName}}</div>
+                                <small>{{x.ArtistName}}</small>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--end small song item-->
+                </a>
+
+                    {% endfor %}
+                    {% else %}
+<h5 class="song-category-title mx-5 pt-4">No Trending Musics </h5>
+{% endif %}
+
+
+
+                    
+                    
+              </div>
+
+
+
+
+
+
+
+
+<!-----------------------New Release-------------------------->
+
+
+              <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+
+                     {% if new_release %}
+                  {% for x in new_release %}
+
+                  <a href="{% url 'view_music' x.id %}" style="color: white;text-decoration: none;">
+
+                    <!--small song item-->
+                    <div class="song-small m-1 ms-4 col-md-6 row align-items-center" >
+                        <div class="col-1 h3">{{forloop.counter}}</div>
+                        <div class="col d-flex">
+                        	{% if x.ArtistImage %}
+                            <img class="song-small-img rounded m-1" src="{{x.ArtistImage.url}}" >
+                            {% endif %}
+                            <div class="ms-1">
+                                <div>{{x.SongName}}</div>
+                                <small>{{x.ArtistName}}</small>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--end small song item-->
+                </a>
+
+                    {% endfor %}
+                    {% else %}
+<h5 class="song-category-title mx-5 pt-4">No New Released Musics </h5>
+{% endif %}
+
+                   
+                    
+                    
+              </div>
+
+
+
+
+
+<!-------------------------------Mwisho wa kudisplay------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+		<!--end hero area-->
+
+		
+	</main><!--end main area-->
+
+
+	
+
+
+
+
+
+
+
+{% block content %}
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+<footer class="p-5 pt-4  row bg-dark text-white">
+		
+		<div class="col-md-3 mb-4 col-sm-6">
+			<h5>Quick links</h5>
+			<ul class="nav flex-column">
+				<li><a href="{% url 'home' %}">Home</a></li>
+				<li><a href="https://readmycv.pythonanywhere.com/">About Us</a></li>
+				<li><a href="{% url 'signup' %}">Signup</a></li>
+				<li><a href="{% url 'signin' %}">Login</a></li>
+			</ul>
+		</div>
+		<div class="col-md-3 mb-4 col-sm-6">
+			<h5>Our Services</h5>
+			<ul class="nav flex-column">
+				<li><a href="#">Web Designing</a></li>
+				<li><a href="#">Graphics Designing</a></li>
+				<li><a href="#">Music Promoting</a></li>
+				<li><a href="#">Video Recording</a></li>
+			</ul>
+		</div>
+		<div class="col-md-6 mb-4">
+			<form method="POST" action="{% url 'send_email' %}">
+				{% csrf_token %}
+			<h5>Send Email to us</h5>
+			<div>to receive news content</div>
+
+			<div class="input-group mb-3 mt-2">
+			  <input type="email"name="Email" class="form-control" placeholder="Email" required>
+			  <button class="bg-primary text-white input-group-text" id="basic-addon2">Send Email</button>
+			</div>
+			</form>
+
+			<div class="text-white h5 ">
+				Follow us: 
+				<a href="">
+					<i class="bi bi-facebook"></i>
+				</a>
+				<a href="">
+					<i class="bi bi-twitter"></i>
+				</a>
+				<a href="">
+					<i class="bi bi-instagram"></i>
+				</a>
+			</div>
+
+		</div>
+	</footer>
+
+
+<script src="{% static 'MusicApp/assets/js/bootstrap.min.js' %}"></script>
+
+ <!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'MusicApp/assets/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'MusicApp/assets/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+
+
+   
+
+    <!-- ------------ AOS js Library  ------------------------- -->
+    <script src="{% static 'MusicApp/assets/js/aos.js' %}"></script>
+
+    
+
+
+   <script >
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskel",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+      
+
+    ];
+
+   $( "#search" ). autocomplete({
+    source: "{% url 'search_music_autocomplete' %}",
+  });
+
+
+  } );
+  
+  
+
+</script>
+
+    
+
+</body>
+</html>-8" />
+

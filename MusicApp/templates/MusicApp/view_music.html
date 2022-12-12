@@ -1,0 +1,80 @@
+
+{% extends 'MusicApp/base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Trending Musics</title>
+   <style type="text/css">
+   	
+  
+   	html{
+   		overflow-x: hidden;
+   	}
+   </style>
+  
+</head>
+<body style="">
+
+
+
+
+
+
+
+
+    <div class="container-fluid" style="margin-bottom: 2cm;">
+
+
+{% if view_music %}
+		
+<h5 class="song-category-title mx-5 pt-4">{{view_music.SongName}} By {{view_music.ArtistName}}</h5>
+
+		<!-- start category area-->
+		<section class=" d-flex justify-content-center" style="flex-wrap: wrap;">
+
+
+
+
+
+			<!--song card start-->
+			<div class="col-md-12" style="">
+				<div style="position: relative;">
+					
+					 {% video view_music.video '100% x 300' %}
+					</div>
+				<div>
+					<div class="lead text-white" style="margin-top: 14px;">
+					    {{view_music.SongName}}
+				</div>
+					<small class="" style="color: red;font-weight: bold;">{{view_music.ArtistName}} - 
+					 <span style="color: white;font-weight: bold;">{{view_music.Created}}</span>
+					 </small><br>
+
+					 <p style="color: white"><img src="{%static 'MusicApp/assets/img/me.jpg' %}" class="rounded-circle" style="width: 30px;height: 30px;">  &nbsp; Must Artists Television</p>
+
+
+					 <!-- <button class="btn-primary" style="color: white;border-radius: 5px;padding: 6px;margin-top: 20px;">Download</button> -->
+				</div>
+			</div>
+			<!--song card end-->
+
+{% else %}
+<h5 class="song-category-title mx-5 pt-4">No  Music </h5>
+{% endif %}
+
+</section>
+
+
+</div>
+
+</body>
+</html>
+
+{% endblock %}

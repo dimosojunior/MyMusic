@@ -1,0 +1,92 @@
+
+{% extends 'MusicApp/base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Searched Music</title>
+   <style type="text/css">
+   	
+  
+   	html{
+   		overflow-x: hidden;
+   	}
+   </style>
+  
+</head>
+<body style="">
+
+
+
+
+
+
+
+
+    <div class="container-fluid" style="margin-bottom: 2cm;">
+
+
+
+	{% if query %}	
+<h5 class="song-category-title mx-5 pt-4">Looking for searched Song<br><small class="float-end"><a href="" style="color: white;font-weight: bold;">{% with results.count as total_results %}
+    found {{total_results}} Song(s)
+    {% endwith %} </a></small></h5>
+
+		<!-- start category area-->
+		<section class=" d-flex justify-content-center" style="flex-wrap: wrap;">
+
+
+
+{% if results %}
+{% for x in results %}
+			<!--song card start-->
+			<div class="col-md-3 m-3" style="">
+				<div style="position: relative;">
+					
+					 {% video x.video '100% x 170' %}
+					</div>
+				<div>
+					<div class="lead text-white" style="margin-top: 14px;">
+					    {{x.SongName}}
+				</div>
+					<small class="" style="color: red;font-weight: bold;">{{x.ArtistName}} - 
+					 <span style="color: white;font-weight: bold;">{{x.Created}}</span>
+					 </small><br>
+
+					 <p style="color: white"><img src="{%static 'MusicApp/assets/img/me.jpg' %}" class="rounded-circle" style="width: 30px;height: 30px;">  &nbsp; Must Artists Television</p>
+
+
+					 <!-- <button class="btn-primary" style="color: white;border-radius: 5px;padding: 6px;margin-top: 20px;">Download</button> -->
+				</div>
+			</div>
+			<!--song card end-->
+{% empty %}
+      <h1>No such kind of song for now</h1>
+      {% endfor %}
+
+
+
+{% else %}
+<h5 class="song-category-title mx-5 pt-4">NO such kind of song for now </h5>
+{% endif %}
+
+
+{% else %}
+<h3>Error in your query</h3>
+{% endif %}
+
+</section>
+
+
+</div>
+
+</body>
+</html>
+
+{% endblock %}
